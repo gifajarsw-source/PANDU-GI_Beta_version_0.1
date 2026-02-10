@@ -83,7 +83,8 @@
         @media (min-width: 600px) { .overlay { align-items: center; padding: 20px; } .modal { border-radius: 20px; max-height: 85vh; } }
         .empty-state { text-align:center; padding: 40px 0; color: var(--text-sub); font-size: 13px; }
         
-        .drive-box { text-align: center; padding: 15px; border: 1px solid #dbeafe; border-radius: 12px; background: #eff6ff; margin-bottom: 15px; display: flex; align-items: center; gap: 15px; }
+        .drive-box { text-align: center; padding: 15px; border: 1px solid #dbeafe; border-radius: 12px; background: #eff6ff; margin-bottom: 15px; display: flex; align-items: center; gap: 15px; cursor: pointer; transition: 0.2s; }
+        .drive-box:active { transform: scale(0.98); background: #dbeafe; }
         .drive-box img, .drive-box svg { width: 32px; height: 32px; }
         .drive-box div { text-align: left; }
     </style>
@@ -154,16 +155,16 @@
     <div id="section-asset" class="app-section">
         <div class="card" style="border-top: 4px solid var(--purple);">
             <h3 class="card-title">Akses Cloud (Google Drive)</h3>
-            <p class="card-desc">Buka folder untuk melihat atau mendownload file.</p>
+            <p class="card-desc">Buka folder untuk melihat/download manual book & gambar teknik.</p>
             <div class="drive-box" onclick="openDriveType('asset')">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 87.3 78"><path d="m6.6 66.85 3.85 6.65c.8 1.4 1.95 2.5 3.3 3.3l13.75-23.8h-27.5c0 1.55.4 3.1 1.2 4.5z" fill="#0066da"/><path d="m43.65 25-13.75-23.8c-1.35.8-2.5 1.9-3.3 3.3l-25.4 44a9.06 9.06 0 0 0 -1.2 4.5h27.5z" fill="#00ac47"/><path d="m73.55 76.8c1.35-.8 2.5-1.9 3.3-3.3l1.6-2.75 7.65-13.25c.8-1.4 1.2-2.95 1.2-4.5h-27.502l5.852 11.5z" fill="#ea4335"/><path d="m43.65 25 13.75 23.8h27.5c0-1.55-.4-3.1-1.2-4.5l-25.4-44c-1.35-.8-2.5-1.9-3.3-3.3z" fill="#00832d"/><path d="m59.8 53.2-16.15 27.8 2.6 4.5c.8 1.4 1.95 2.5 3.3 3.3l13.75-23.8z" fill="#2684fc"/><path d="m29.65 52.8-5.55-9.6-11.75-20.4-1.9-3.3c-.8 1.4-1.2 2.95-1.2 4.5l2.6 4.5 16.15 27.8z" fill="#ffba00"/></svg>
                 <div>
                     <div style="font-weight:700; color:var(--text-main)">Buka Folder Asset ↗️</div>
-                    <div style="font-size:11px; color:var(--text-sub)">Via Google Drive</div>
+                    <div style="font-size:11px; color:var(--text-sub)">Lihat di Google Drive</div>
                 </div>
             </div>
             <div style="margin-top:10px; border-top:1px dashed #cbd5e1; padding-top:10px;">
-                <label class="data-label">Setting Link Drive</label>
+                <label class="data-label">Setting Link Folder</label>
                 <div style="display:flex; gap:5px">
                     <input type="text" id="in-link-asset" placeholder="Paste link folder..." style="margin:0">
                     <button class="btn btn-secondary" onclick="saveDriveType('asset')" style="width:auto; margin:0">Simpan</button>
@@ -173,29 +174,29 @@
 
         <div class="card">
             <h3 class="card-title">Simpan di Aplikasi (Offline)</h3>
-            <p class="card-desc">Upload file PDF yang sudah didownload agar bisa dibuka tanpa internet.</p>
+            <p class="card-desc">Simpan file PDF dari Drive ke aplikasi agar bisa dibuka tanpa internet.</p>
             <input type="text" id="asset-name" placeholder="Judul Dokumen">
             <input type="file" id="asset-file" accept="application/pdf">
-            <button class="btn btn-purple" onclick="saveAsset()">💾 Simpan PDF ke Aplikasi</button>
+            <button class="btn btn-purple" onclick="saveAsset()">💾 Simpan PDF (Offline)</button>
         </div>
         
-        <h4 style="margin:20px 0 10px 5px; color:var(--text-sub); font-size:13px; text-transform:uppercase;">File Tersimpan</h4>
+        <h4 style="margin:20px 0 10px 5px; color:var(--text-sub); font-size:13px; text-transform:uppercase;">File Tersimpan (Offline)</h4>
         <div id="list-asset"></div>
     </div>
 
     <div id="section-sop" class="app-section">
         <div class="card" style="border-top: 4px solid var(--success);">
             <h3 class="card-title">Akses Cloud (Google Drive)</h3>
-            <p class="card-desc">Buka folder untuk melihat atau mendownload file.</p>
+            <p class="card-desc">Buka folder untuk melihat/download SOP & IK.</p>
             <div class="drive-box" onclick="openDriveType('sop')">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 87.3 78"><path d="m6.6 66.85 3.85 6.65c.8 1.4 1.95 2.5 3.3 3.3l13.75-23.8h-27.5c0 1.55.4 3.1 1.2 4.5z" fill="#0066da"/><path d="m43.65 25-13.75-23.8c-1.35.8-2.5 1.9-3.3 3.3l-25.4 44a9.06 9.06 0 0 0 -1.2 4.5h27.5z" fill="#00ac47"/><path d="m73.55 76.8c1.35-.8 2.5-1.9 3.3-3.3l1.6-2.75 7.65-13.25c.8-1.4 1.2-2.95 1.2-4.5h-27.502l5.852 11.5z" fill="#ea4335"/><path d="m43.65 25 13.75 23.8h27.5c0-1.55-.4-3.1-1.2-4.5l-25.4-44c-1.35-.8-2.5-1.9-3.3-3.3z" fill="#00832d"/><path d="m59.8 53.2-16.15 27.8 2.6 4.5c.8 1.4 1.95 2.5 3.3 3.3l13.75-23.8z" fill="#2684fc"/><path d="m29.65 52.8-5.55-9.6-11.75-20.4-1.9-3.3c-.8 1.4-1.2 2.95-1.2 4.5l2.6 4.5 16.15 27.8z" fill="#ffba00"/></svg>
                 <div>
                     <div style="font-weight:700; color:var(--text-main)">Buka Folder SOP ↗️</div>
-                    <div style="font-size:11px; color:var(--text-sub)">Via Google Drive</div>
+                    <div style="font-size:11px; color:var(--text-sub)">Lihat di Google Drive</div>
                 </div>
             </div>
             <div style="margin-top:10px; border-top:1px dashed #cbd5e1; padding-top:10px;">
-                <label class="data-label">Setting Link Drive</label>
+                <label class="data-label">Setting Link Folder</label>
                 <div style="display:flex; gap:5px">
                     <input type="text" id="in-link-sop" placeholder="Paste link folder..." style="margin:0">
                     <button class="btn btn-secondary" onclick="saveDriveType('sop')" style="width:auto; margin:0">Simpan</button>
@@ -205,13 +206,13 @@
 
         <div class="card">
             <h3 class="card-title">Simpan di Aplikasi (Offline)</h3>
-            <p class="card-desc">Upload file PDF yang sudah didownload agar bisa dibuka tanpa internet.</p>
+            <p class="card-desc">Simpan file PDF dari Drive ke aplikasi agar bisa dibuka tanpa internet.</p>
             <input type="text" id="sop-name" placeholder="Judul Dokumen">
             <input type="file" id="sop-file" accept="application/pdf">
-            <button class="btn btn-success" onclick="saveSOP()">💾 Simpan PDF ke Aplikasi</button>
+            <button class="btn btn-success" onclick="saveSOP()">💾 Simpan PDF (Offline)</button>
         </div>
         
-        <h4 style="margin:20px 0 10px 5px; color:var(--text-sub); font-size:13px; text-transform:uppercase;">File Tersimpan</h4>
+        <h4 style="margin:20px 0 10px 5px; color:var(--text-sub); font-size:13px; text-transform:uppercase;">File Tersimpan (Offline)</h4>
         <div id="list-sop"></div>
     </div>
 
@@ -227,28 +228,41 @@
         </div>
         
         <div class="card">
-            <div class="data-label">1. Backup ke Cloud</div>
-            <p class="card-desc">Download database JSON lalu upload ke folder Drive.</p>
-            <button class="btn btn-primary" onclick="exportData()">⬇️ Download JSON</button>
-            <div class="data-label" style="margin-top:10px">Link Folder Backup (Drive)</div>
-            <div style="display:flex; gap:5px">
-                <input type="text" id="in-gdrive-link" placeholder="Paste link..." style="margin:0">
-                <button class="btn btn-secondary" onclick="saveGDriveLink()" style="width:auto; margin:0">Simpan</button>
+            <div class="data-label">Backup Database</div>
+            <p class="card-desc">1. Download JSON.<br>2. Upload ke Google Drive.</p>
+            
+            <div class="drive-box" onclick="openGDrive()">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 87.3 78"><path d="m6.6 66.85 3.85 6.65c.8 1.4 1.95 2.5 3.3 3.3l13.75-23.8h-27.5c0 1.55.4 3.1 1.2 4.5z" fill="#0066da"/><path d="m43.65 25-13.75-23.8c-1.35.8-2.5 1.9-3.3 3.3l-25.4 44a9.06 9.06 0 0 0 -1.2 4.5h27.5z" fill="#00ac47"/><path d="m73.55 76.8c1.35-.8 2.5-1.9 3.3-3.3l1.6-2.75 7.65-13.25c.8-1.4 1.2-2.95 1.2-4.5h-27.502l5.852 11.5z" fill="#ea4335"/><path d="m43.65 25 13.75 23.8h27.5c0-1.55-.4-3.1-1.2-4.5l-25.4-44c-1.35-.8-2.5-1.9-3.3-3.3z" fill="#00832d"/><path d="m59.8 53.2-16.15 27.8 2.6 4.5c.8 1.4 1.95 2.5 3.3 3.3l13.75-23.8z" fill="#2684fc"/><path d="m29.65 52.8-5.55-9.6-11.75-20.4-1.9-3.3c-.8 1.4-1.2 2.95-1.2 4.5l2.6 4.5 16.15 27.8z" fill="#ffba00"/></svg>
+                <div>
+                    <div style="font-weight:700; color:var(--text-main)">Buka Google Drive ↗️</div>
+                    <div style="font-size:11px; color:var(--text-sub)">Folder Backup Utama</div>
+                </div>
             </div>
-            <button class="btn btn-secondary" style="margin-top:10px" onclick="openGDrive()">↗️ Buka Drive</button>
+
+            <button class="btn btn-primary" onclick="exportData()">⬇️ 1. Download File JSON</button>
+            <p style="font-size:11px; color:var(--text-sub); margin-top:5px">Setelah download, klik "Buka Google Drive" diatas lalu upload file tersebut.</p>
+
+            <div style="margin-top:15px; border-top:1px dashed #cbd5e1; padding-top:10px;">
+                <label class="data-label">Link Folder Backup (Optional)</label>
+                <div style="display:flex; gap:5px">
+                    <input type="text" id="in-gdrive-link" placeholder="Paste link..." style="margin:0">
+                    <button class="btn btn-secondary" onclick="saveGDriveLink()" style="width:auto; margin:0">Simpan</button>
+                </div>
+            </div>
         </div>
         
         <div class="card">
-            <div class="data-label">2. Restore dari Cloud</div>
-            <p class="card-desc">Ambil file dari Drive, lalu upload disini.</p>
-            <button class="btn btn-secondary" onclick="openGDrive()">↗️ Ambil File di Drive</button>
-            <div style="margin-top:15px; border-top:1px dashed #cbd5e1; padding-top:10px">
+            <div class="data-label">Restore Database</div>
+            <p class="card-desc">1. Buka Drive & Download file backup terbaru.<br>2. Upload file tersebut kesini.</p>
+            <button class="btn btn-secondary" onclick="openGDrive()">↗️ 1. Ambil dari Google Drive</button>
+            <div style="margin-top:10px; border-top:1px dashed #cbd5e1; padding-top:10px;">
                 <input type="file" id="import-file" accept=".json">
-                <button class="btn btn-primary" onclick="importData(document.getElementById('import-file'))">📂 Restore File JSON</button>
+                <button class="btn btn-primary" onclick="importData(document.getElementById('import-file'))">📂 2. Restore ke Aplikasi</button>
             </div>
         </div>
         
         <div class="card" style="background:#fff1f2; border-color:#fecdd3; margin-top:20px;">
+            <div class="data-label" style="color:var(--danger)">Danger Zone</div>
             <button class="btn btn-danger" onclick="resetApp()">⚠️ Hapus Data Unit Ini</button>
         </div>
     </div>
@@ -317,6 +331,8 @@ let currentUnit = null;
 let db = { anns: [], contacts: [] }; 
 let idb;
 let links = { asset: "", sop: "", backup: "" };
+// DEFAULT MASTER LINK
+const DEFAULT_DRIVE = "https://drive.google.com/drive/folders/13vT0iXCJLjer9sMS5VWI5jjchFk4ntmo?usp=sharing";
 
 document.addEventListener('DOMContentLoaded', () => {
     setupSearchEngine();
@@ -338,7 +354,7 @@ function renderSearchResults(k) {
     if (filtered.length === 0) return list.innerHTML = `<div class="search-item" style="color:var(--text-sub);justify-content:center">Tidak ditemukan</div>`;
     filtered.forEach(u => {
         const div = document.createElement('div'); div.className = 'search-item';
-        div.innerHTML = `<div class="si-icon">${u.code}</div><div class="si-text"><div>${u.name}</div><div>GARDU INDUK</div></div>`;
+        div.innerHTML = `<div class="si-icon">${u.code}</div><div class="si-text"><div>${u.name}</div><div style="font-size:11px;color:#94a3b8">Tap untuk masuk</div></div>`;
         div.onclick = () => login(u.id); list.appendChild(div);
     });
 }
@@ -350,7 +366,6 @@ function login(unitId) {
     const unit = UNITS.find(u => u.id === unitId); if(!unit) return;
     currentUnit = unit; localStorage.setItem('pandu_active_unit', unitId);
     
-    // Load DB
     const saved = localStorage.getItem(`pandu_db_${unitId}`);
     if (saved) {
         let t = JSON.parse(saved);
@@ -358,10 +373,11 @@ function login(unitId) {
         db = t; if(!db.anns) db.anns=[];
     } else db = { anns: [], contacts: [] };
 
-    // Load Links
+    // Load Links (Default to MASTER if empty)
     links.asset = localStorage.getItem(`pandu_link_asset_${unitId}`) || "";
     links.sop = localStorage.getItem(`pandu_link_sop_${unitId}`) || "";
-    links.backup = localStorage.getItem(`pandu_link_backup_${unitId}`) || "";
+    links.backup = localStorage.getItem(`pandu_link_backup_${unitId}`) || DEFAULT_DRIVE;
+    
     document.getElementById('in-link-asset').value = links.asset;
     document.getElementById('in-link-sop').value = links.sop;
     document.getElementById('in-gdrive-link').value = links.backup;
@@ -386,7 +402,7 @@ function saveDriveType(type) {
 }
 function openDriveType(type) {
     if(links[type] && links[type].length > 5) window.open(links[type], '_blank');
-    else { alert("Link Drive belum diatur!"); document.getElementById(`in-link-${type}`).focus(); }
+    else { alert("Link Drive belum diatur! Silakan paste link folder."); document.getElementById(`in-link-${type}`).focus(); }
 }
 function saveGDriveLink() {
     const val = document.getElementById('in-gdrive-link').value;
@@ -394,8 +410,9 @@ function saveGDriveLink() {
     links.backup = val; showToast("Link Backup tersimpan");
 }
 function openGDrive() {
+    // Open default if set, otherwise open general drive
     if(links.backup && links.backup.length > 5) window.open(links.backup, '_blank');
-    else { if(confirm("Link belum ada. Buka Google Drive utama?")) window.open("https://drive.google.com", '_blank'); }
+    else window.open(DEFAULT_DRIVE, '_blank');
 }
 
 // INDEXED DB (OFFLINE FILES)
@@ -464,7 +481,7 @@ function openSection(id) {
     if(id==='section-asset') renderAsset();
 }
 
-// DATA & ANNUNCIATOR Logic (Standard)
+// DATA & ANNUNCIATOR Logic
 function renderAnnunciator() {
     const list = document.getElementById('list-ann'); const k = document.getElementById('search-ann').value.toLowerCase(); list.innerHTML = "";
     const f = db.anns.filter(x => (x.unit+" "+x.name+" "+x.mean+" "+x.ind+" "+x.cause+" "+x.act).toLowerCase().includes(k));
@@ -493,7 +510,7 @@ function delContact(id) { if(confirm("Hapus?")) { db.contacts=db.contacts.filter
 
 function exportData() { const s=JSON.stringify(db,null,2); const b=new Blob([s],{type:"application/json"}); const u=URL.createObjectURL(b); const a=document.createElement('a'); a.href=u; a.download=`BACKUP_${currentUnit.code}.json`; document.body.appendChild(a); a.click(); a.remove(); }
 function importData(inp) { const f=inp.files[0]; if(!f) return; const r=new FileReader(); r.onload=e=>{ try { const j=JSON.parse(e.target.result); if(confirm(`Timpa data?`)) { if(j.alarms) { j.anns=j.alarms.map(x=>({id:x.id,unit:x.s,name:x.a,mean:"",ind:x.m,cause:x.p,act:x.t})); delete j.alarms; } db=j; saveData(); location.reload(); } } catch(e){showToast("File rusak",true);} }; r.readAsText(f); }
-function resetApp() { if(confirm("RESET TOTAL?")) { localStorage.removeItem(`pandu_db_${currentUnit.id}`); localStorage.removeItem(`pandu_link_asset_${currentUnit.id}`); localStorage.removeItem(`pandu_link_sop_${currentUnit.id}`); indexedDB.deleteDatabase(`PanduGI_${currentUnit.id}`).onsuccess=()=>location.reload(); } }
+function resetApp() { if(confirm("RESET TOTAL?")) { localStorage.removeItem(`pandu_db_${currentUnit.id}`); localStorage.removeItem(`pandu_link_asset_${currentUnit.id}`); localStorage.removeItem(`pandu_link_sop_${currentUnit.id}`); localStorage.removeItem(`pandu_link_backup_${currentUnit.id}`); indexedDB.deleteDatabase(`PanduGI_${currentUnit.id}`).onsuccess=()=>location.reload(); } }
 
 function openModal(id) { document.getElementById(id).style.display='flex'; if(id==='modal-ann') ['ann-id','ann-unit','ann-name','ann-mean','ann-ind','ann-cause','ann-action'].forEach(k=>document.getElementById(k).value=""); if(id==='modal-contact') ['contact-id','contact-name','contact-num'].forEach(k=>document.getElementById(k).value=""); }
 function closeModal(id) { document.getElementById(id).style.display='none'; }
