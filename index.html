@@ -354,7 +354,7 @@ function renderSearchResults(k) {
     if (filtered.length === 0) return list.innerHTML = `<div class="search-item" style="color:var(--text-sub);justify-content:center">Tidak ditemukan</div>`;
     filtered.forEach(u => {
         const div = document.createElement('div'); div.className = 'search-item';
-        div.innerHTML = `<div class="si-icon">${u.code}</div><div class="si-text"><div>${u.name}</div><div style="font-size:11px;color:#94a3b8">Tap untuk masuk</div></div>`;
+        div.innerHTML = `<div class="si-icon">${u.code}</div><div class="si-text"><div>${u.name}</div><div>GARDU INDUK</div></div>`;
         div.onclick = () => login(u.id); list.appendChild(div);
     });
 }
