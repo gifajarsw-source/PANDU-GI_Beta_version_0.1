@@ -374,8 +374,8 @@ function login(unitId) {
     } else db = { anns: [], contacts: [] };
 
     // Load Links (Default to MASTER if empty)
-    links.asset = localStorage.getItem(`pandu_link_asset_${unitId}`) || "";
-    links.sop = localStorage.getItem(`pandu_link_sop_${unitId}`) || "";
+    links.asset = localStorage.getItem(`pandu_link_asset_${unitId}`) || DEFAULT_DRIVE;
+    links.sop = localStorage.getItem(`pandu_link_sop_${unitId}`) || DEFAULT_DRIVE;
     links.backup = localStorage.getItem(`pandu_link_backup_${unitId}`) || DEFAULT_DRIVE;
     
     document.getElementById('in-link-asset').value = links.asset;
